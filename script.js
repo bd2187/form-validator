@@ -10,25 +10,58 @@ function validateForm(formId) {
   // Select DOM elements
   const formEl = document.querySelector(`#${formId}`);
   const inputEls = [...document.querySelectorAll(`#${formId} input`)];
+  const errorEl = document.querySelector(".error");
 
-  // On form submission, iterate over the input values and check if fields are empty.
+  // Add submit event to form element
   formEl.addEventListener("submit", function(evt) {
     evt.preventDefault();
 
-    var completedFields = 0;
+    var formCompleted = false;
+    var formErrors = [];
 
-    inputEls.forEach(function(element) {
-      var inputValue = element.value.trim();
-
-      if (inputValue) {
-        completedFields++;
+    // Array of radio button elements
+    var radioButtons = inputEls.filter(function(element) {
+      if (element.type === "radio") {
+        return element;
       }
     });
 
-    if (completedFields === inputEls.length) {
-      console.log("submit form");
-      // formEl.submit();
+    // Loop through all input elements
+    inputEls.forEach(function(element) {
+      var inputValue = element.value.trim();
+      var inputType = element.getAttribute("type");
+
+      if (inputType === "text" && inputValue === "") {
+        formErrors.push(element.className);
+      } else if (inputType === "tel" && inputValue === "") {
+        formErrors.push(element.className);
+      }
+    });
+
+    // Iterate over radio buttons array to check if at least one is checked
+    // radioButtons.forEach(function(element) {
+    //   if (element.checked === false) {
+    //     formErrors.push(element.name);
+    //   }
+
+    // });
+
+    // var removedDuplicateErrors = formErrors.filter(function(
+    //   error,
+    //   index,
+    //   self
+    // ) {
+    //   return index === self.indexOf(error);
+    // });
+
+    // console.log(removedDuplicateErrors);
+
+    if (formErrors.length === 0) {
+      formCompleted = true;
+      console.log("form complete");
+      //evt.submit();
     } else {
+      errorEl.style.display = "block";
       console.log("form incomplete");
     }
   });

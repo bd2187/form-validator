@@ -3,15 +3,37 @@
 
 <head>
     <meta charset="utf-8" />
-    <header>Form</header>
+    <title>Form</title>
+    <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
     <form id="bio">
-        <input type="text" placeholder="first" required/>
+        <div class="error">
+            <p>Error:
+                <span class="error-message"></span>
+            </p>
+        </div>
+
+        <input type="text" placeholder="first" class="firstname" />
+        <input type="text" placeholder="last" class="lastname" />
+
         <br />
-        <input type="text" placeholder="last" required/>
+
+        <input type="tel" placeholder="phone" class="phone" />
+
         <br />
+
+        <div class="gender">
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+        </div>
+
+        <br />
+
         <button type="submit">Submit!</button>
     </form>
 </body>

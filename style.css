@@ -1,0 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
+.error {
+  display: none;
+}
+
+input {
+  margin: 1em 0;
+  display: inline-block;
+}
