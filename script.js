@@ -15,26 +15,29 @@ function validateForm(formId) {
   // Add submit event to form element
   formEl.addEventListener("submit", function(evt) {
     evt.preventDefault();
-
-    var formCompleted = false;
     var formErrors = [];
 
     // Array of radio button elements
-    var radioButtons = inputEls.filter(function(element) {
-      if (element.type === "radio") {
-        return element;
-      }
-    });
+    // var radioButtons = inputEls.filter(function(element) {
+    //   if (element.type === "radio") {
+    //     return element;
+    //   }
+    // });
 
-    // Loop through all input elements
+    /*
+    *
+    * Iterate over each input field to see if it's empty.
+    * If empty, push the element's placeholder attr to the formErrors array.
+    *
+    */
     inputEls.forEach(function(element) {
       var inputValue = element.value.trim();
       var inputType = element.getAttribute("type");
 
       if (inputType === "text" && inputValue === "") {
-        formErrors.push(element.className);
+        formErrors.push(element.getAttribute("placeholder"));
       } else if (inputType === "tel" && inputValue === "") {
-        formErrors.push(element.className);
+        formErrors.push(element.getAttribute("placeholder"));
       }
     });
 
@@ -55,6 +58,8 @@ function validateForm(formId) {
 
     // console.log(removedDuplicateErrors);
     console.log(formErrors);
+
+    // If the formErrors array is empty, submit the form, otherwise, display error message
     if (formErrors.length === 0) {
       console.log("form complete");
       // formEl.submit();
