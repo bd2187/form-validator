@@ -4,6 +4,7 @@
 
 .error {
   display: none;
+  color: red;
 }
 
 input {

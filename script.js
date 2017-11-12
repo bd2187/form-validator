@@ -43,7 +43,6 @@ function validateForm(formId) {
     //   if (element.checked === false) {
     //     formErrors.push(element.name);
     //   }
-
     // });
 
     // var removedDuplicateErrors = formErrors.filter(function(
@@ -55,11 +54,10 @@ function validateForm(formId) {
     // });
 
     // console.log(removedDuplicateErrors);
-
+    console.log(formErrors);
     if (formErrors.length === 0) {
-      formCompleted = true;
       console.log("form complete");
-      //evt.submit();
+      // formEl.submit();
     } else {
       errorEl.style.display = "block";
       console.log("form incomplete");
